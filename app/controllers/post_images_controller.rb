@@ -12,7 +12,7 @@ class PostImagesController < ApplicationController
   end
 
   def index
-    @post_images = PostImage.all
+    @post_images = PostImage.page(params[:page]).reverse_order
   end
 
   def show
@@ -27,7 +27,6 @@ class PostImagesController < ApplicationController
   end
   
    private
-
    # 投稿データのストロングパラメータ
   def post_image_params
     params.require(:post_image).permit(:shop_name, :image, :caption)
